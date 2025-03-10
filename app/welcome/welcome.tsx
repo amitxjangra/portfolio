@@ -23,7 +23,7 @@ export function Welcome() {
       </header>
       <main>
         <div className="grid grid-cols-2 items-center relative gap-10 w-full pl-30 pr-30">
-          <div className="w-full border center-heading-page">
+          <div className="w-full center-heading-page">
             <div className="font-bold text-6xl heading">creative designer </div>
             <div className="font-bold text-6xl heading">& developer.</div>
             <div className="pt-5 text-[14px]">
@@ -42,7 +42,7 @@ export function Welcome() {
               />
             </div>
           </div>
-          <div className="border content-center">
+          <div className="content-center">
             <div className="aspect-[1/0.8] w-max-[400px] relative overflow-hidden">
               <img
                 className="relative z-10 w-full h-full place-self-center object-contain animate-bouncy speed-slow"
@@ -72,15 +72,15 @@ export function Welcome() {
       </main>
       <div className="w-full">
         <ul>
-          {projectData.map((i,idx) => {
+          {projectData.map((i, idx) => {
             return (
               <li className="relative list-hover flex h-80 py-30 pl-30 pr-20 transition-all hover:bg-[#ffffff] hover:py-20 flex flex-row justify-between items-center">
                 <div>
                   <text
                     className="shadow-text text-3xl font-bold"
-                    data-text={(idx + 1).toString().padStart(2, '0')}
+                    data-text={(idx + 1).toString().padStart(2, "0")}
                   >
-                    {(idx + 1).toString().padStart(2, '0')}
+                    {(idx + 1).toString().padStart(2, "0")}
                   </text>
                   {i.title}
                 </div>
