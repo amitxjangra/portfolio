@@ -1,9 +1,7 @@
 import React from "react";
-import { Link, useLocation } from "react-router";
+import { Link } from "react-router";
 
 const Navbar = () => {
-  const location = useLocation();
-  console.log("location", location);
   return (
     <header className="flex justify-between p-15">
       <div className="">
