@@ -5,7 +5,7 @@ interface LoadingScreenProps {
   isLoading: boolean;
 }
 
-export function LoadingScreen({ isLoading }: LoadingScreenProps) {
+export default function LoadingScreen({ isLoading }: LoadingScreenProps) {
   useEffect(() => {
     $("body").css("overflow", "hidden");
     $(".bar").animate({ width: "100%" }, 1000, function () {
@@ -41,5 +41,3 @@ export function LoadingScreen({ isLoading }: LoadingScreenProps) {
     </div>
   );
 }
-
-export default LoadingScreen;

@@ -1,0 +1,19 @@
+@import "tailwindcss";
+
+.build-together {
+  content: "";
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  background: repeating-linear-gradient(
+    45deg,
+    #ffffff4d,
+    #ffffff4d 3px,
+    #141414 3px,
+    #141414 8px
+  );
+  border-radius: 100%;
+  left: -70px;
+  top: 0;
+  z-index: 1;
+}

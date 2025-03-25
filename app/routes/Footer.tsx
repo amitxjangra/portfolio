@@ -1,29 +1,32 @@
 import React from "react";
 import { ButtonCircle } from "~/welcome/components/ButtonCircle";
-
+import "app/styles/footer.css";
+import { useMobile } from "~/context/MobileContext";
 const Footer = () => {
+  const isMobile = useMobile();
+
   return (
-    <footer className="flex relative w-full h-100 bg-[#141414] justify-center pt-25">
-      <div className="flex flex-col items-center">
-        <text className="text-5xl text-white font-bold pb-10">
-          Let's work together.
-        </text>
+    <footer className="flex relative w-full h-100 bg-[#141414] justify-center pt-10">
+      <div className="flex flex-col p-5 relative">
+        <div className="build-together"></div>
+        <p className="text-3xl text-white font-bold">Let's work together.</p>
+        <p className="text-white font-thin pb-10 pt-3">
+          Let's work together to build something great.
+        </p>
         <ButtonCircle
           textColor="#fff"
           height={52}
           circleColor="#414141"
           content={
-            <text className="flex font-bold z-2 pl-7 pt-3.5 pr-7 pb-3.5">
+            <p className="flex font-bold z-2 pl-7 pt-3.5 pr-7 pb-3.5">
               Say Hello &nbsp; &rarr;
-            </text>
+            </p>
           }
         />
       </div>
       <div className="absolute flex flex-row gap-7 bottom-0 items-center">
-        <text className="text-white font-thin text-xs">
-          &copy; Amit Kumar 2025
-        </text>
-        <text>|</text>
+        <p className="text-white font-thin text-xs">&copy; Amit Kumar 2025</p>
+        <p>|</p>
         <div className="flex gap-5">
           <i className="fa fa-facebook text-white cursor-pointer" />
           <i className="fa fa-instagram text-white cursor-pointer" />

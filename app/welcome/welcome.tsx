@@ -34,8 +34,8 @@ export function Welcome() {
                 & developer.
               </div>
               <div className="uncover mt-5 text-[14px]">
-                Hi I'm Amit Kumar. A passionate Front End Developer based in
-                India.
+                Hi I'm Amit Kumar. A Front End Developer based in India with 3
+                years of experience in React JS
               </div>
               <div className="uncover mt-10 w-max">
                 <ButtonCircle

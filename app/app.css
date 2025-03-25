@@ -1,5 +1,4 @@
 @import "tailwindcss";
-
 @theme {
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
@@ -135,7 +134,9 @@ body {
 .uncover {
   position: relative;
 }
-
+/* * {
+  border: 1px solid red;
+} */
 .uncover::after {
   content: "";
   position: absolute;
@@ -150,6 +151,35 @@ body {
 .uncover.active::after {
   width: 0px;
   /* display: none; */
+}
+
+.bio-image {
+  width: 200px;
+  position: relative;
+  place-self: center;
+  background: url("https://images.unsplash.com/photo-1543852786-1cf6624b9987?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8Y2F0c3xlbnwwfHwwfHx8MA%3D%3D");
+  height: 300px;
+  z-index: 2;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+.bio-image::after {
+  content: "";
+  z-index: 1;
+  position: absolute;
+  top: 50px;
+  right: 50px;
+  width: 200px;
+  height: 100%;
+  opacity: 0.8;
+  background-color: transparent;
+  background: repeating-linear-gradient(
+    -45deg,
+    #000000,
+    #000000 2px,
+    #ffffff 2px,
+    #ffffff 15px
+  );
 }
 
 @keyframes image-in {
