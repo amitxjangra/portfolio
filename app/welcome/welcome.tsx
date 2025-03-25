@@ -2,6 +2,7 @@ import LoadingScreen from "~/components/LoadingScreen";
 import { ButtonCircle } from "./components/ButtonCircle";
 import { useEffect, useState } from "react";
 import $ from "jquery";
+import Arrow from "~/assets/arrow";
 
 const projectData = [
   { title: "project" },
@@ -15,7 +16,7 @@ export function Welcome() {
   useEffect(() => {
     setTimeout(() => {
       setIsLoading(false);
-      $("body").css("overflow", "auto");
+      $("body").css("overflow-y", "auto");
       $(".uncover").addClass("active");
     }, 3000);
   }, []);
@@ -73,8 +74,8 @@ export function Welcome() {
               Typescript
             </div>
           </div>
-          <div className="absolute right-10 top-[85vh] transfrom rotate-90">
-            Scroll Down &rarr;
+          <div className="absolute uppercase font-bold flex right-10 top-[85vh] transfrom rotate-90 gap-5">
+            Scroll Down <Arrow color="#333333" />
           </div>
         </main>
         <div className="w-full">
@@ -96,15 +97,20 @@ export function Welcome() {
                       height={52}
                       circleColor="#e5e5e5"
                       content={
-                        <text className="flex font-bold z-2 pl-7 pt-3.5 pr-7 pb-3.5">
+                        <text className="flex font-bold mix-blend-luminosity z-2 pl-7 pt-3.5 pr-7 pb-3.5">
                           View Projects &nbsp; &rarr;
                         </text>
                       }
                     />
                   </div>
-                  <div className="absolute right-0 border px-100 py-70 image-box">
-                    content
-                  </div>
+                  <div
+                    className="absolute right-0 border px-100 py-70 image-box grayscale transition duration-300 hover:grayscale-0"
+                    style={{
+                      background:
+                        'url("https://images.unsplash.com/photo-1741807083060-39c641cd97fa?q=80&w=2636&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")',
+                      backgroundSize: "contain",
+                    }}
+                  />
                 </li>
               );
             })}

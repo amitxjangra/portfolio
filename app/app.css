@@ -3,6 +3,7 @@
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --animate-bouncy: bouncy 3s ease-in-out infinite;
+  --animate-grayscaleaa: grayscale 1s linear forwards;
   @keyframes bouncy {
     0%,
     100% {
@@ -10,6 +11,15 @@
     }
     50% {
       transform: translateY(-10px);
+    }
+  }
+
+  @keyframes grayscaleaa {
+    0% {
+      filter: grayscale(100);
+    }
+    100% {
+      filter: grayscale(0);
     }
   }
 }
@@ -66,8 +76,9 @@ body {
   }
   &:hover {
     .image-box {
+      visibility: visible;
       opacity: 1;
-      animation: image-in 0.5s ease-in;
+      animation: image-in 0.3s ease-in;
     }
     & > div:first-child text {
       position: relative;
@@ -103,7 +114,8 @@ body {
 }
 
 .image-box {
-  opacity: 0;
+  visibility: hidden;
+  opacity: 1;
   transform: perspective(100px) rotateY(-2deg);
   transform-origin: right;
 }
@@ -157,29 +169,32 @@ body {
   width: 200px;
   position: relative;
   place-self: center;
-  background: url("https://images.unsplash.com/photo-1543852786-1cf6624b9987?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8Y2F0c3xlbnwwfHwwfHx8MA%3D%3D");
-  height: 300px;
-  z-index: 2;
-  background-repeat: no-repeat;
-  background-size: contain;
-}
-.bio-image::after {
-  content: "";
-  z-index: 1;
-  position: absolute;
   top: 50px;
   right: 50px;
   width: 200px;
   height: 100%;
-  opacity: 0.8;
-  background-color: transparent;
   background: repeating-linear-gradient(
     -45deg,
     #000000,
     #000000 2px,
-    #ffffff 2px,
-    #ffffff 15px
+    #f9f9f9 2px,
+    #f9f9f9 15px
   );
+  height: 300px;
+  z-index: 0;
+}
+.bio-image::before {
+  content: "";
+  z-index: -1;
+  position: absolute;
+  top: -50px;
+  right: -50px;
+  width: 200px;
+  height: 100%;
+  opacity: 1;
+  background: url("https://images.unsplash.com/photo-1543852786-1cf6624b9987?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8Y2F0c3xlbnwwfHwwfHx8MA%3D%3D");
+  background-repeat: no-repeat;
+  background-size: contain;
 }
 
 @keyframes image-in {

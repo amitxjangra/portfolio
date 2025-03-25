@@ -16,7 +16,7 @@ export function ButtonCircle({
 
   return (
     <button
-      className={`flex relative uppercase cursor-pointer`}
+      className={`flex relative uppercase cursor-pointer w-max`}
       style={{
         color: textColor,
         height: `${height}px`,
