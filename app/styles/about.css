@@ -1,0 +1,36 @@
+.about-tab-block {
+  padding: 1rem;
+}
+
+.about-para {
+  line-height: 2;
+  font-weight: 400;
+  color: #363636;
+}
+
+.about-tab-heading {
+  display: flex;
+  gap: 10px;
+  span:first-child {
+    color: black;
+    font-weight: 1000;
+  }
+  span:not(:first-child) {
+    font-weight: 300;
+    padding-bottom: 10px;
+  }
+  span {
+    text-transform: uppercase;
+    letter-spacing: 3px;
+  }
+}
+
+.scrolling-text{
+  color: white;
+  font-weight: 1000;
+  letter-spacing: 2px;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 2px;
+  -webkit-text-stroke-color: white;
+  font-size: 38px;
+}
