@@ -25,7 +25,7 @@ export function ButtonCircle({
       onMouseOut={() => setIsHovered(false)}
     >
       <div
-        className={`circle flex absolute z-1 rounded-[100%] hover:bg-red-500`}
+        className={`circle flex absolute z-4 rounded-[100%] hover:bg-red-500`}
         style={{
           background: circleColor,
           height: `${height}px`,

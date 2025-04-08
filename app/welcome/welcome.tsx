@@ -1,11 +1,14 @@
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
+import $ from "jquery";
+
 import LoadingScreen from "~/components/LoadingScreen";
 import { ButtonCircle } from "./components/ButtonCircle";
-import { useEffect, useState } from "react";
-import $ from "jquery";
 import Arrow from "~/assets/arrow";
+import eComm from "/eComm.png";
 
 const projectData = [
-  { title: "project" },
+  { title: "eCommerce", image: eComm, path: "/eCommerce" },
   { title: "project" },
   { title: "project" },
   { title: "project" },
@@ -13,6 +16,7 @@ const projectData = [
 
 export function Welcome() {
   const [isLoading, setIsLoading] = useState(true);
+  const navigate = useNavigate();
   useEffect(() => {
     setTimeout(() => {
       setIsLoading(false);
@@ -43,7 +47,7 @@ export function Welcome() {
                   height={52}
                   circleColor="#e5e5e5"
                   content={
-                    <text className="flex font-bold z-2 pl-7 pr-7 pt-3.5 pb-3.5">
+                    <text className="flex font-bold z-4 pl-7 pr-7 pt-3.5 pb-3.5">
                       See my works &nbsp; &rarr;
                     </text>
                   }
@@ -92,23 +96,28 @@ export function Welcome() {
                     </text>
                     {i.title}
                   </div>
-                  <div>
+                  <div onClick={() => i.path && navigate(i.path)}>
                     <ButtonCircle
                       height={52}
                       circleColor="#e5e5e5"
                       content={
-                        <text className="flex font-bold mix-blend-luminosity z-2 pl-7 pt-3.5 pr-7 pb-3.5">
+                        <text className="flex font-bold mix-blend-luminosity z-4 pl-7 pt-3.5 pr-7 pb-3.5">
                           View Projects &nbsp; &rarr;
                         </text>
                       }
                     />
                   </div>
                   <div
-                    className="absolute right-0 border px-100 py-70 image-box grayscale transition duration-300 hover:grayscale-0"
+                    className="absolute right-0 border px-100 py-70 image-box grayscale transition duration-300 hover:grayscale-0 z-3"
                     style={{
-                      background:
-                        'url("https://images.unsplash.com/photo-1741807083060-39c641cd97fa?q=80&w=2636&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")',
-                      backgroundSize: "contain",
+                      background: `url(${
+                        i.image
+                          ? i.image
+                          : "https://images.unsplash.com/photo-1741807083060-39c641cd97fa?q=80&w=2636&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                      })`,
+                      backgroundSize: "cover",
+                      backgroundRepeat: "no-repeat",
+                      backgroundPosition: "center",
                     }}
                   />
                 </li>

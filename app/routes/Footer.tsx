@@ -8,7 +8,7 @@ const Footer = () => {
   const isMobile = useMobile();
 
   return (
-    <footer className="flex -z-1 relative w-full h-[70vh] bg-[#141414] justify-center pt-10">
+    <footer className="flex -z-1 relative w-full h-[70vh] bg-[#141414] justify-center pt-10 z-2">
       <div className="flex flex-col p-5 pt-15 relative">
         <div className="build-together"></div>
         <p className="text-3xl text-white font-bold z-2">
@@ -23,7 +23,7 @@ const Footer = () => {
             height={52}
             circleColor="#414141"
             content={
-              <p className="flex font-bold z-2 pl-7 pt-3.5 pr-7 pb-3.5">
+              <p className="flex font-bold z-4 pl-7 pt-3.5 pr-7 pb-3.5">
                 Say Hello &nbsp; &rarr;
               </p>
             }
