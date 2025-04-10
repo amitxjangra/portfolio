@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import $ from "jquery";
+import "../styles/loading.css";
 
 interface LoadingScreenProps {
   isLoading: boolean;
@@ -7,20 +7,35 @@ interface LoadingScreenProps {
 
 export default function LoadingScreen({ isLoading }: LoadingScreenProps) {
   useEffect(() => {
-    $("body").css("overflow", "hidden");
-    $(".bar").animate({ width: "100%" }, 1000, function () {
-      $(".bar-line").animate(
-        { width: "100vW", borderRadius: 0 },
-        1000,
-        function () {
-          setTimeout(() => {
-            $(".loadingScreen").css("display", "none");
-          }, 200);
-          $(".upper-half, .lower-half").animate({ height: "0px" }, 1000);
-        }
-      );
-    });
+    const body = document.body;
+    window.scrollTo(0, 0);
+    if (body) body.style.overflow = "hidden";
+
+    const bar = document.querySelector(".bar");
+    const barLine = document.querySelector(".bar-line");
+    const loadingScreen = document.querySelector(".loadingScreen");
+    const upperHalf = document.querySelector(".upper-half");
+    const lowerHalf = document.querySelector(".lower-half");
+
+    if (bar && barLine && loadingScreen && upperHalf && lowerHalf) {
+      // Start the bar animation
+      bar.classList.add("animate-bar");
+      window.scrollTo(0, 0);
+
+      // After bar animation completes, start the bar-line animation
+      setTimeout(() => {
+        barLine.classList.add("animate-bar-line");
+
+        // After bar-line animation completes, hide loading screen and animate halves
+        setTimeout(() => {
+          loadingScreen.classList.add("hide");
+          upperHalf.classList.add("animate-half");
+          lowerHalf.classList.add("animate-half");
+        }, 1000);
+      }, 1000);
+    }
   }, []);
+
   return (
     <div
       className="w-screen h-screen z-1000"

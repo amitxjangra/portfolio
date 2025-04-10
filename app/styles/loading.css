@@ -1,0 +1,44 @@
+.animate-bar {
+  animation: fillBar 1s forwards;
+}
+
+.animate-bar-line {
+  animation: expandBarLine 1s forwards;
+}
+
+.animate-half {
+  animation: collapseHalf 1s forwards;
+}
+
+.hide {
+  display: none;
+}
+
+@keyframes fillBar {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes expandBarLine {
+  from {
+    width: 20rem;
+    border-radius: 0.375rem;
+  }
+  to {
+    width: 100vw;
+    border-radius: 0;
+  }
+}
+
+@keyframes collapseHalf {
+  from {
+    height: 50vh;
+  }
+  to {
+    height: 0;
+  }
+}

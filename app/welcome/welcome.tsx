@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
-import $ from "jquery";
 
 import LoadingScreen from "~/components/LoadingScreen";
 import { ButtonCircle } from "./components/ButtonCircle";
@@ -20,8 +19,8 @@ export function Welcome() {
   useEffect(() => {
     setTimeout(() => {
       setIsLoading(false);
-      $("body").css("overflow-y", "auto");
-      $(".uncover").addClass("active");
+      const body = document.body;
+      if (body) body.style.overflowY = "auto";
     }, 3000);
   }, []);
 
@@ -32,17 +31,31 @@ export function Welcome() {
         <main>
           <div className="grid grid-cols-2 items-center relative gap-10 w-full pl-30 pr-30">
             <div className="w-full center-heading-page flex flex-col gap-5 justify-center">
-              <div className="uncover font-bold text-6xl heading w-max leading-[normal] ">
+              <div
+                className={`uncover font-bold text-6xl heading w-max leading-[normal] ${
+                  !isLoading ? "active" : ""
+                }`}
+              >
                 creative designer{" "}
               </div>
-              <div className="uncover font-bold text-6xl heading w-max leading-[normal]">
+              <div
+                className={`uncover font-bold text-6xl heading w-max leading-[normal] ${
+                  !isLoading ? "active" : ""
+                }`}
+              >
                 & developer.
               </div>
-              <div className="uncover mt-5 text-[14px]">
+              <div
+                className={`uncover mt-5 text-[14px] ${
+                  !isLoading ? "active" : ""
+                }`}
+              >
                 Hi I'm Amit Kumar. A Front End Developer based in India with 3
                 years of experience in React JS
               </div>
-              <div className="uncover mt-10 w-max">
+              <div
+                className={`uncover mt-10 w-max ${!isLoading ? "active" : ""}`}
+              >
                 <ButtonCircle
                   height={52}
                   circleColor="#e5e5e5"

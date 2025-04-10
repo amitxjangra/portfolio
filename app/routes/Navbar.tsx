@@ -1,18 +1,17 @@
-import React, { useLayoutEffect } from "react";
-import { Link } from "react-router";
-import Hamburger from "~/components/hamburger";
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import Logo from "~/components/Logo";
 import MobileMenu from "~/components/MobileMenu";
 import { useMobile } from "~/context/MobileContext";
 
 const Navbar = () => {
+  const [open, setOpen] = useState<boolean>(false);
   const isMobile = useMobile();
   return (
-    <header className="flex justify-between md:p-15 lg:p-15 p-5">
-      <div className="z-13 ">
-        <img className="w-15" src="/sign2.png" />
-      </div>
+    <header id="top-bar" className="flex justify-between md:p-15 lg:p-15 p-5">
+      <Logo open={open} />
       {isMobile ? (
-        <MobileMenu />
+        <MobileMenu open={open} setOpen={setOpen} />
       ) : (
         <nav className="flex animate-all">
           <Link

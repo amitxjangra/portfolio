@@ -1,41 +1,64 @@
-import React, { useEffect } from "react";
-import "app/styles/hamburger.css";
-import $ from "jquery";
+"use client"; // Mark as client-side to avoid SSR issues
 
-export default function Hamburger({ open }: { open: Boolean }) {
-  // useEffect(() => {
-  //   if (open) {
-  //     $(".line-top").addClass("top-line");
-  //     $(".line-center").addClass("center-line");
-  //     $(".line-bottom").addClass("bottom-line");
-  //   } else {
-  //     $(".line-top").removeClass("top-line");
-  //     $(".line-center").removeClass("center-line");
-  //     $(".line-bottom").removeClass("bottom-line");
-  //   }
-  // }, [open]);
+import React from "react";
+import styled from "styled-components";
+import "app/styles/hamburger.css"; // Keep base styles
 
+interface HamburgerProps {
+  open: boolean;
+}
+
+// Styled container
+const Container = styled.div`
+  width: 40px;
+  height: 30px;
+  position: relative;
+  display: flex;
+`;
+
+// Single Line component with conditional class-based styles
+const Line = styled.div<{ open: boolean }>`
+  position: absolute;
+  background-color: ${(props) => (props.open ? "white" : "black")};
+  border-radius: 9999px;
+  transition: all 0.2s ease-in-out;
+
+  &.line-top {
+    width: ${(props) => (props.open ? "50%" : "60%")};
+    right: 0;
+    top: ${(props) => (props.open ? "-2px" : "0px")};
+    transform: ${(props) =>
+      props.open ? `rotate(${Math.asin(-30 / 50)}rad)` : "rotate(0deg)"};
+    transform-origin: right;
+  }
+
+  &.line-center {
+    width: ${(props) => (props.open ? "50px" : "40px")};
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%)
+      ${(props) =>
+        props.open ? `rotate(${Math.asin(30 / 50)}rad)` : "rotate(0deg)"};
+  }
+
+  &.line-bottom {
+    width: 60%;
+    bottom: ${(props) => (props.open ? "-2px" : "0px")};
+    left: 0;
+    transform: ${(props) =>
+      props.open ? `rotate(${Math.asin(-30 / 50)}rad)` : "rotate(0deg)"};
+    transform-origin: left;
+  }
+`;
+
+const Hamburger: React.FC<HamburgerProps> = ({ open }) => {
   return (
-    <div className="flex w-[40px] h-[30px] relative">
-      <div className="line-top absolute h-1 bg-black w-[60%] float-right rounded-full right-0 origin-right" />
-      <div className="line-center absolute h-1 bg-black w-full rounded-full top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%]" />
-      <div className="line-bottom absolute bottom-0 w-[60%] h-1 bg-black rounded-full origin-left" />
-    </div>
+    <Container>
+      <Line open={open} className="line-top h-1" />
+      <Line open={open} className="line-center h-1" />
+      <Line open={open} className="line-bottom h-1" />
+    </Container>
   );
-}
+};
 
-{
-  /*
-<div className="flex flex-col w-14 h-[27px] gap-[7px] self-center cursor-pointer">
-<div
-className="w-full h-full bg-black float-right ml-auto rounded-full"
-style={{ width: "60%" }}
-/>
-<div className="w-full h-full bg-black rounded-full" />
-<div
-className="w-full h-full bg-black rounded-full"
-style={{ width: "60%" }}
-/>
-</div>
-*/
-}
+export default Hamburger;

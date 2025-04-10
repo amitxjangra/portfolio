@@ -27,26 +27,46 @@ const About = () => {
       </div>
       <div className="marquee w-screen h-80">
         {/* <p className="scrolling-text">Frontend Developer</p> */}
-        <svg viewBox="0 0 100 100" width={'100%'} className="h-80 bg-black" >
-          <text x='' y='25' fill="#fff" stroke="white">UI/UX Designer
-            <animate attributeName="x" from="100" to="-200" dur="8s" repeatCount="indefinite"></animate>
+        <svg viewBox="0 0 100 100" width={"100%"} className="h-80 bg-black">
+          <text x="" y="25" fill="#fff" stroke="white">
+            UI/UX Designer
+            <animate
+              attributeName="x"
+              from="100"
+              to="-200"
+              dur="8s"
+              repeatCount="indefinite"
+            ></animate>
           </text>
-          <text x='' y='50' fill="#fff" stroke="white">Frontend Developer
-            <animate attributeName="x" from="-200" to="100" dur="8s" repeatCount="indefinite"></animate>
+          <text x="" y="50" fill="#fff" stroke="white">
+            Frontend Developer
+            <animate
+              attributeName="x"
+              from="-200"
+              to="100"
+              dur="8s"
+              repeatCount="indefinite"
+            ></animate>
           </text>
-          <text x='' y='75' fill="#fff" stroke="white">Frontend Developer
-            <animate attributeName="x" from="200" to="-200" dur="3s" repeatCount="indefinite"></animate>
+          <text x="" y="75" fill="#fff" stroke="white">
+            Frontend Developer
+            <animate
+              attributeName="x"
+              from="200"
+              to="-200"
+              dur="3s"
+              repeatCount="indefinite"
+            ></animate>
           </text>
         </svg>
-
       </div>
-      
+
       <div className="about-tab-block">
         <div className="about-tab-heading">
           <span className="bullet-point">/01</span>
           <span>The Tools</span>
         </div>
-        <span className="text-2xl font-bold py-200">What I Use.</span>
+        <span className="text-2xl font-bold py-20">What I Use.</span>
         <p className="about-para py-8">
           My process begins with understanding the problem deeply, then crafting
           modular solutions that balance performance with maintainability. I
@@ -66,11 +86,11 @@ const About = () => {
           <span className="bullet-point">/02</span>
           <span>Contact</span>
         </div>
-        <span className="text-2xl font-bold py-200">Social.</span>
+        <span className="text-2xl font-bold py-20">Social.</span>
         <p className="about-para py-8">
           LinkedIn / Instagram / Twitter / Facebook
         </p>
-        <span className="text-2xl font-bold py-200">Email.</span>
+        <span className="text-2xl font-bold py-20">Email.</span>
         <p className="about-para py-8">
           <a href="mailto:amitkum3052000@gmail.com">amitkum3052000@gmail.com</a>
         </p>

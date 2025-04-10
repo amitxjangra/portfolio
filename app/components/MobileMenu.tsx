@@ -1,101 +1,117 @@
 "use client";
-import { useCallback, useEffect, useState } from "react";
-import Hamburger from "./hamburger";
-import $ from "jquery";
-import { Link } from "react-router";
-
-export default function MobileMenu() {
-  const [open, setOpen] = useState(false);
+import React, { useCallback, useEffect } from "react";
+import { Link } from "react-router-dom";
+import Hamburger from "./hamburger"; // Adjust path
+import "../styles/navMenu.css";
+interface Props {
+  open: boolean;
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}
+const MobileMenu: React.FC<Props> = ({ open, setOpen }) => {
+  const [playable, setPlayable] = React.useState(false);
 
   const handleMenuToggle = useCallback(() => {
+    setPlayable(true);
     setOpen((prev) => !prev);
-    $("body").css("overflow", `${!open ? "hidden" : "auto"} `);
-    $(".line-bottom").animate(
-      open
-        ? { width: "60%", rotate: "0deg", left: "0px", bottom: "0px" }
-        : {
-            width: "60%",
-            bottom: "-2px",
-            rotate: `${Math.asin(-30 / 50)}rad`,
-          },
-      200
-    );
-    $(".line-center").animate(
-      open
-        ? { width: "40px", top: "50%", left: "50%", rotate: "0deg" }
-        : {
-            width: "50px",
-            top: "50%",
-            left: "50%",
-            rotate: `${Math.asin(30 / 50)}rad`,
-          },
-      200
-    );
-    $(".line-top").animate(
-      open
-        ? { width: "60%", rotate: "0deg", right: "0px", top: "0px" }
-        : {
-            width: "50%",
-            right: "0px",
-            top: "-2px",
-            rotate: `${Math.asin(-30 / 50)}rad`,
-          },
-      200
-    );
-  }, [open]);
+  }, []);
 
   const closeLayer = useCallback(() => {
     setOpen(false);
-    $("body").css("overflow", "auto");
-    $(".line-bottom").animate(
-      {
-        width: "60%",
-        rotate: "0deg",
-        left: "0px",
-        bottom: "0px",
-      },
-      100
-    );
-    $(".line-center").animate(
-      { width: "40px", top: "50%", left: "50%", rotate: "0deg" },
-      100
-    );
-    $(".line-top").animate(
-      { width: "60%", rotate: "0deg", right: "0px", top: "0px" },
-      100
-    );
   }, []);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      document.body.style.overflow = open ? "hidden" : "auto";
+      let menuLayer = document.getElementById("menuLayer");
+      if (menuLayer) menuLayer.style.visibility = open ? "visible" : "hidden";
+      if (open && menuLayer) {
+        menuLayer.style.top = "0";
+      } else if (menuLayer) {
+        menuLayer.style.top = "-100%";
+      }
+    }
+    return () => {
+      if (typeof window !== "undefined") {
+        document.body.style.overflow = "auto";
+      }
+    };
+  }, [open]);
 
   return (
     <>
-      <button className="z-13" onClick={handleMenuToggle}>
+      <button
+        className="flex hover:cursor-pointer relative z-13"
+        onClick={handleMenuToggle}
+      >
         <Hamburger open={open} />
       </button>
-      {open && (
-        <div className="flex absolute flex-col gap-5 w-screen h-screen bg-gray-700 left-0 top-0 z-12 justify-center items-center">
-          <Link
-            to="/"
-            className="menu-items text-5xl font-bold"
-            onClick={closeLayer}
+
+      <div className="absolute layerbox h-screen w-screen top-0 left-0 overflow-hidden z-1">
+        <div
+          className={`h-[33%] bg-gray-700  ${
+            open ? "scroll-box-in" : "scroll-box-out"
+          } `}
+          data-row="1"
+          data-playable={playable}
+        ></div>
+        <div
+          className={`h-[33%] bg-gray-700 ${
+            open ? "scroll-box-in" : "scroll-box-out"
+          }`}
+          data-row="2"
+          data-playable={playable}
+        ></div>
+        <div
+          className={` h-[34%] bg-gray-700 ${
+            open ? "scroll-box-in" : "scroll-box-out"
+          }`}
+          data-row="3"
+          data-playable={playable}
+          onAnimationEnd={() => {
+            if (open) {
+              let menuBox2 = document.getElementById("menu-content-box");
+              let links = document.querySelectorAll(".bumpIn");
+              if (menuBox2) {
+                menuBox2.style.opacity = "1";
+              }
+            }
+          }}
+        ></div>
+        {open && (
+          <div
+            id="menu-content-box"
+            className={
+              " absolute z-2 w-screen h-screen top-0 left-0 flex justify-center items-center"
+            }
           >
-            Home
-          </Link>
-          <Link
-            to="/about"
-            className="menu-items text-5xl font-bold"
-            onClick={closeLayer}
-          >
-            About
-          </Link>
-          <Link
-            to="/works"
-            className=" menu-itemstext-5xl font-bold"
-            onClick={closeLayer}
-          >
-            Works
-          </Link>
-        </div>
-      )}
+            <div className="flex flex-col gap-20">
+              <Link
+                to="/"
+                onClick={closeLayer}
+                className="bumpIn cursor-pointer text-white text-5xl font-[700] uppercase text-center"
+              >
+                Home
+              </Link>
+              <Link
+                to="/about"
+                onClick={closeLayer}
+                className="bumpIn cursor-pointer text-white text-5xl font-[700] uppercase text-center"
+              >
+                About
+              </Link>
+              <Link
+                to="/works"
+                onClick={closeLayer}
+                className="bumpIn cursor-pointer text-white text-5xl font-[700] uppercase text-center "
+              >
+                Works
+              </Link>
+            </div>
+          </div>
+        )}
+      </div>
     </>
   );
-}
+};
+
+export default MobileMenu;
