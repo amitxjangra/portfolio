@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Logo from "~/components/Logo";
 import MobileMenu from "~/components/MobileMenu";
 import { useMobile } from "~/context/MobileContext";
@@ -7,6 +7,7 @@ import { useMobile } from "~/context/MobileContext";
 const Navbar = () => {
   const [open, setOpen] = useState<boolean>(false);
   const isMobile = useMobile();
+  const location = useLocation();
   return (
     <header id="top-bar" className="flex justify-between md:p-15 lg:p-15 p-5">
       <Logo open={open} />
@@ -31,6 +32,12 @@ const Navbar = () => {
             className="cursor-pointer uppercase w-30 text-center hover:border-b-2"
           >
             Works
+          </Link>
+          <Link
+            to="/contact"
+            className="cursor-pointer uppercase w-30 text-center hover:border-b-2"
+          >
+            Contact
           </Link>
         </nav>
       )}

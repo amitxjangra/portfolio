@@ -3,14 +3,30 @@ import { ButtonCircle } from "~/welcome/components/ButtonCircle";
 import "app/styles/footer.css";
 import { useMobile } from "~/context/MobileContext";
 import Arrow from "~/assets/arrow";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Footer = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
   const isMobile = useMobile();
+
   const handleScrollToTop = () => {
     document
       .getElementById("top-bar")
       ?.scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" });
   };
+
+  const handleComms = () => {
+    if (location.pathname === "/contact") {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    } else {
+      navigate("/contact");
+    }
+  };
+
   return (
     <footer className="flex -z-1 relative w-full h-[70vh] bg-[#141414] justify-center pt-10 z-2">
       <div className="flex flex-col p-5 pt-15 relative">
@@ -21,7 +37,7 @@ const Footer = () => {
         <p className="text-white font-thin pb-10 pt-3 z-2">
           Let's work together to build something great.
         </p>
-        <div className="pt-5">
+        <div className="pt-5" onClick={handleComms}>
           <ButtonCircle
             textColor="#fff"
             height={52}
@@ -34,7 +50,7 @@ const Footer = () => {
           />
         </div>
       </div>
-      <div className="absolute flex flex-col-reverse gap-7 bottom-0 items-center pb-10">
+      <div className="absolute flex flex-col-reverse gap-7 bottom-0 items-center pb-10 md:flex-row">
         <p className="text-white uppercase font-thin text-xs">
           &copy; Amit Kumar 2025
         </p>
@@ -65,7 +81,7 @@ const Footer = () => {
         </div>
       </div>
       <div
-        className="absolute tracking-[6px] flex text-[10px] font-thin uppercase -right-22 bottom-50 -rotate-90 text-white"
+        className="hover:cursor-pointer absolute tracking-[6px] flex text-[10px] font-thin uppercase -right-22 bottom-50 -rotate-90 text-white"
         onClick={handleScrollToTop}
       >
         Scroll to Top <Arrow />

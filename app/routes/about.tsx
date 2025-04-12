@@ -4,16 +4,16 @@ import "app/styles/about.css";
 const About = () => {
   return (
     <>
-      <div className="flex px-5 py-15 w-full md:px-40 md:py-20 lg:px-40 lg:py-40">
-        <p className="text-4xl">
+      <div className="flex px-5 py-15 w-full md:px-20 md:py-20 lg:px-40 lg:py-40">
+        <p className="text-4xl md:text-5xl lg:text-6xl">
           I am a<br />
           <b>front-end developer</b> <br />
           with 3 years of experience
         </p>
       </div>
-      <div className="flex flex-col justify-center items-center md:flex-row lg:flex-row">
-        <div className="relative w-screen justify-center mb-15 md:w-[60%] lg:w-[30%]">
-          <div className=" bio-image md:ml-20 lg:ml-50"></div>
+      <div className="flex flex-col justify-center items-center w-full md:flex-row md:px-10 lg:px-10 lg:flex-row md:mb-30">
+        <div className="relative items-center justify-center mb-15 md:w-2/3 ">
+          <div className=" bio-image md:ml-20 lg:ml-50" />
           <div className="bio-image-cover md:ml-20 lg:ml-50" />
         </div>
         <div className="px-5 pt-10 pb-15">
@@ -61,8 +61,8 @@ const About = () => {
         </svg>
       </div>
 
-      <div className="about-tab-block">
-        <div className="about-tab-heading">
+      <div className="px-5 pt-10 md:px-40 md:pt-10 lg:pt-20">
+        <div className="about-tab-heading pt-10 sm:pt-20">
           <span className="bullet-point">/01</span>
           <span>The Tools</span>
         </div>
@@ -81,19 +81,42 @@ const About = () => {
           requirements.
         </p>
       </div>
-      <div className="about-tab-block">
-        <div className="about-tab-heading">
+      <div className="px-5 pt-10 md:px-40 md:pt-10 lg:pt-20">
+        <div className="about-tab-heading pt-10 sm:pt-20">
           <span className="bullet-point">/02</span>
-          <span>Contact</span>
+          <span>Skills</span>
         </div>
-        <span className="text-2xl font-bold py-20">Social.</span>
+        <span className="text-2xl font-bold py-20">What I Know.</span>
         <p className="about-para py-8">
-          LinkedIn / Instagram / Twitter / Facebook
+          I use a number of tools that make design and development much easier.
+          I usually use Figma for doing all the process that includes
+          wireframing, prototyping, and design.
         </p>
-        <span className="text-2xl font-bold py-20">Email.</span>
-        <p className="about-para py-8">
-          <a href="mailto:amitkum3052000@gmail.com">amitkum3052000@gmail.com</a>
-        </p>
+        <span className="text-xl font-bold ">
+          Software / Tools / Web Development
+        </span>
+        <div className="grid grid-cols-2 gap-4 py-8 md:grid-cols-3 md:max-w-3xl">
+          <span>HTML 5</span>
+          <span>CSS 3</span>
+          <span>Javascript</span>
+          <span>React JS</span>
+          <span>Redux</span>
+          <span>Git</span>
+          <span>NPM</span>
+          <span>Vite</span>
+          <span>Webpack</span>
+          <span>Grommet</span>
+          <span>Styled-Components</span>
+          <span>Tailwind</span>
+          <span>Formik</span>
+          <span>Yup</span>
+          <span>DOM</span>
+          <span>Sass</span>
+          <span>WebSocket</span>
+          <span>Express JS</span>
+          <span>MySQL</span>
+          <span>ES6</span>
+        </div>
       </div>
     </>
   );
