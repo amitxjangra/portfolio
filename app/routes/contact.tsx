@@ -103,6 +103,7 @@ export default function Contact() {
         message: !isValidMessage,
       });
       if (isValidName && isValidEmail && isValidSubject && isValidMessage) {
+        console.log("VITE_EMAILJS", import.meta.env);
         let form = document.querySelector("form") as HTMLFormElement;
         emailjs
           .sendForm("service_f3fnlcq", "template_vi3t56r", form, {
