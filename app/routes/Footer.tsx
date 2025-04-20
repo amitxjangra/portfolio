@@ -1,22 +1,24 @@
-import React from "react";
+import React, { useCallback, memo } from "react";
 import { ButtonCircle } from "~/welcome/components/ButtonCircle";
 import "app/styles/footer.css";
 import { useMobile } from "~/context/MobileContext";
 import Arrow from "~/assets/arrow";
 import { useLocation, useNavigate } from "react-router-dom";
 
-const Footer = () => {
+// Use memo to prevent unnecessary re-renders
+const Footer = memo(() => {
   const location = useLocation();
   const navigate = useNavigate();
   const isMobile = useMobile();
 
-  const handleScrollToTop = () => {
+  // Use useCallback to memoize the handler functions
+  const handleScrollToTop = useCallback(() => {
     document
       .getElementById("top-bar")
       ?.scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" });
-  };
+  }, []);
 
-  const handleComms = () => {
+  const handleComms = useCallback(() => {
     if (location.pathname === "/contact") {
       window.scrollTo({
         top: 0,
@@ -25,7 +27,19 @@ const Footer = () => {
     } else {
       navigate("/contact");
     }
-  };
+  }, [location.pathname, navigate]);
+
+  const handleInstagramClick = useCallback(() => {
+    window.open("https://www.instagram.com/amitxjangra/");
+  }, []);
+
+  const handleGithubClick = useCallback(() => {
+    window.open("https://github.com/amitxjangra");
+  }, []);
+
+  const handleLinkedInClick = useCallback(() => {
+    window.open("https://www.linkedin.com/in/amitkumar3052000/");
+  }, []);
 
   return (
     <footer className="flex -z-1 relative w-full h-[70vh] bg-[#141414] justify-center pt-10 z-2">
@@ -64,19 +78,15 @@ const Footer = () => {
           /> */}
           <i
             className="fa fa-instagram text-white cursor-pointer"
-            onClick={() =>
-              window.open("https://www.instagram.com/amitxjangra/")
-            }
+            onClick={handleInstagramClick}
           />
           <i
             className="fa fa-github text-white cursor-pointer"
-            onClick={() => window.open("https://github.com/amitxjangra")}
+            onClick={handleGithubClick}
           />
           <i
             className="fa fa-linkedin text-white cursor-pointer"
-            onClick={() =>
-              window.open("https://www.linkedin.com/in/amitkumar3052000/")
-            }
+            onClick={handleLinkedInClick}
           />
         </div>
       </div>
@@ -88,6 +98,8 @@ const Footer = () => {
       </div>
     </footer>
   );
-};
+});
+
+Footer.displayName = "Footer";
 
 export default Footer;

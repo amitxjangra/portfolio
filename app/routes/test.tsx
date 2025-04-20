@@ -1,13 +1,16 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useCallback } from "react";
 import "../styles/navMenu.css";
 
-const test = () => {
+const Test = () => {
   const [open, setOpen] = React.useState(false);
   const [playable, setPlayable] = React.useState(false);
-  const handleOpen = () => {
+  
+  // Use useCallback to memoize the handler function
+  const handleOpen = useCallback(() => {
+    console.log("Button clicked");
     setPlayable(true);
     setOpen((prev) => !prev);
-  };
+  }, []);
 
   return (
     <div className="relative">
@@ -21,4 +24,4 @@ const test = () => {
   );
 };
 
-export default test;
+export default Test;

@@ -1,15 +1,21 @@
 import eComm from "/eComm.png";
 import { ButtonCircle } from "~/welcome/components/ButtonCircle";
-export default function eCommerce() {
+import { useCallback, memo } from "react";
+
+// Use memo to prevent unnecessary re-renders
+const ECommerce = memo(() => {
+  // Use useCallback to memoize the handler function
+  const handleOpenWebsite = useCallback(() => {
+    window.open("https://e-commerce-zeta-five-84.vercel.app/");
+  }, []);
+
   return (
     <div className="px-15">
       <p className="text-4xl font-bold mb-10">eCommerce</p>
       <img src={eComm} />
       <div
         className="mt-10 w-max float-right"
-        onClick={() =>
-          window.open("https://e-commerce-zeta-five-84.vercel.app/")
-        }
+        onClick={handleOpenWebsite} // Use the memoized function directly
       >
         <ButtonCircle
           height={52}
@@ -39,4 +45,8 @@ export default function eCommerce() {
       </div>
     </div>
   );
-}
+});
+
+ECommerce.displayName = "ECommerce";
+
+export default ECommerce;

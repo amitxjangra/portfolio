@@ -98,7 +98,7 @@ export function Welcome() {
               Typescript
             </div>
           </div>
-          <div className="absolute uppercase animate-shake font-bold flex transfrom rotate-90 gap-5  right-[calc(0px-70px)] md:right-0 ">
+          <div className="absolute uppercase animate-shake font-bold flex transfrom rotate-90 gap-5 right-[calc(0px-70px)] md:right-0 ">
             Scroll Down <Arrow color="#333333" />
           </div>
         </main>

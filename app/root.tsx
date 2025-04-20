@@ -6,6 +6,7 @@ import {
   Scripts,
   ScrollRestoration,
 } from "react-router";
+import { memo } from "react";
 
 import type { Route } from "./+types/root";
 import "./app.css";
@@ -28,7 +29,7 @@ export const links: Route.LinksFunction = () => [
   },
 ];
 
-export function Layout({ children }: { children: React.ReactNode }) {
+const Layout = memo(({ children }: { children: React.ReactNode }) => {
   return (
     <MobileProvider>
       <html lang="en">
@@ -46,7 +47,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
       </html>
     </MobileProvider>
   );
-}
+});
+
+Layout.displayName = "Layout";
+
+export { Layout };
 
 export default function App() {
   return <Outlet />;

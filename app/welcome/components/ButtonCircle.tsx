@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, memo, useCallback } from "react";
+
 interface ButtonCircleProps {
   textColor?: string;
   height: number;
@@ -6,13 +7,23 @@ interface ButtonCircleProps {
   content: string | React.ReactNode;
 }
 
-export function ButtonCircle({
+// Use memo to prevent unnecessary re-renders
+export const ButtonCircle = memo(({
   textColor,
   height,
   circleColor,
   content,
-}: ButtonCircleProps) {
+}: ButtonCircleProps) => {
   const [isHovered, setIsHovered] = useState(false);
+  
+  // Use useCallback to memoize the handler functions
+  const handleMouseOver = useCallback(() => {
+    setIsHovered(true);
+  }, []);
+  
+  const handleMouseOut = useCallback(() => {
+    setIsHovered(false);
+  }, []);
 
   return (
     <button
@@ -21,8 +32,8 @@ export function ButtonCircle({
         color: textColor,
         height: `${height}px`,
       }}
-      onMouseOver={() => setIsHovered(true)}
-      onMouseOut={() => setIsHovered(false)}
+      onMouseOver={handleMouseOver}
+      onMouseOut={handleMouseOut}
     >
       <div
         className={`circle flex absolute z-4 rounded-[100%] hover:bg-red-500`}
@@ -37,4 +48,6 @@ export function ButtonCircle({
       {content}
     </button>
   );
-}
+});
+
+ButtonCircle.displayName = "ButtonCircle";

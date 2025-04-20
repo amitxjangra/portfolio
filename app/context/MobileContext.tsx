@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState, useMemo } from "react";
 
 const MobileContext = createContext(false);
 
@@ -8,15 +8,16 @@ export const MobileProvider = ({ children }: { children: React.ReactNode }) => {
   );
 
   useEffect(() => {
-    if (typeof window === "undefined") return; // Prevents SSR issues
+    if (typeof window === "undefined") return;
 
     const handleResize = () => setIsMobile(window.innerWidth <= 768);
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+  const value = useMemo(() => isMobile, [isMobile]);
 
   return (
-    <MobileContext.Provider value={isMobile}>{children}</MobileContext.Provider>
+    <MobileContext.Provider value={value}>{children}</MobileContext.Provider>
   );
 };
 

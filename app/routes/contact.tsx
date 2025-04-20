@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useState, memo } from "react";
 import { ButtonCircle } from "~/welcome/components/ButtonCircle";
 import "app/styles/contact.css";
 import emailjs from "@emailjs/browser";
@@ -10,8 +10,9 @@ const validateField = (name: string, value: string) => {
 
     case "email":
       // Simple email regex
-      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim());
-
+      return /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(
+        value.trim()
+      );
     case "subject":
       return value.trim().length >= 3;
 
@@ -23,7 +24,7 @@ const validateField = (name: string, value: string) => {
   }
 };
 
-export default function Contact() {
+const Contact = memo(() => {
   const [touched, setTouched] = useState({
     name: false,
     email: false,
@@ -44,11 +45,10 @@ export default function Contact() {
   });
   const [status, setStatus] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
+
   const handleChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
       const { name, value } = e.target;
-
-      // setTouched((prev) => ({ ...prev, [name]: true }));
       setValue((prev) => ({ ...prev, [name]: value }));
 
       const isValid = validateField(name, value);
@@ -60,7 +60,6 @@ export default function Contact() {
   const handleBlur = useCallback(
     (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
       const { name, value } = e.target;
-
       setTouched((prev) => ({ ...prev, [name]: true }));
 
       const isValid = validateField(name, value);
@@ -75,6 +74,7 @@ export default function Contact() {
         e.preventDefault();
         return;
       }
+      setIsSubmitting(true);
       const submitButton = document.getElementById(
         "submit-button"
       ) as HTMLButtonElement;
@@ -85,6 +85,9 @@ export default function Contact() {
   const handleSubmit = useCallback(
     (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
+      if (isSubmitting) {
+        return;
+      }
       const { name, email, subject, message } = value;
       const isValidName = validateField("name", name);
       const isValidEmail = validateField("email", email);
@@ -103,7 +106,6 @@ export default function Contact() {
         message: !isValidMessage,
       });
       if (isValidName && isValidEmail && isValidSubject && isValidMessage) {
-        console.log("VITE_EMAILJS", import.meta.env);
         let form = document.querySelector("form") as HTMLFormElement;
         emailjs
           .sendForm("service_f3fnlcq", "template_vi3t56r", form, {
@@ -114,27 +116,29 @@ export default function Contact() {
               if (res.status === 200) {
                 setStatus("SUCCESS");
               }
+              // amazonq-ignore-next-line
             },
             (error) => {
               setStatus("FAILED");
             }
           )
           .finally(() => {
+            setIsSubmitting(false);
             setTimeout(() => {
               setStatus(null);
             }, 5000);
           });
       }
     },
-    [value]
+    [value, isSubmitting]
   );
 
   return (
     <div className="p-5 flex flex-col gap-5 max-w-full my-10 md:max-w-2/3 md:mx-auto md:mb-20 lg:max-w-1/2 ">
       <div className="text-4xl font-bold">Get in touch.</div>
       <p className="text-lg font-[500]">
-        Got a project in mind or just want to say hi? I’m all ears! And if
-        you’re looking to hire, let’s make something awesome together — feel
+        Got a project in mind or just want to say hi? I'm all ears! And if
+        you're looking to hire, let's make something awesome together — feel
         free to reach out!
       </p>
       <form onSubmit={handleSubmit}>
@@ -201,16 +205,13 @@ export default function Contact() {
             <div className="error-msg">Please enter a message.</div>
           )}
         </div>
-        <div
-          className="pt-5"
-          onClick={(e) => handleSubmitClick(e)} // Trigger submit button click when div is clicked
-        >
+        <div className="pt-5" onClick={handleSubmitClick}>
           <ButtonCircle
             height={52}
             circleColor="#e5e5e5"
             content={
               <text className="flex font-bold z-4 pl-7 pr-7 pt-3.5 pb-3.5">
-                Send Message &nbsp; &rarr;
+                {isSubmitting ? "Sending..." : <>Send Message &nbsp; &rarr;</>}
               </text>
             }
           />
@@ -233,4 +234,8 @@ export default function Contact() {
       </form>
     </div>
   );
-}
+});
+
+Contact.displayName = "Contact";
+
+export default Contact;
