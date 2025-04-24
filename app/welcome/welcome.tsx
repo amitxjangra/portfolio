@@ -19,6 +19,7 @@ export function Welcome() {
 
   const isMobile = useMobile();
   const navigate = useNavigate();
+
   useEffect(() => {
     setTimeout(() => {
       setIsLoading(false);
@@ -30,6 +31,7 @@ export function Welcome() {
   return (
     <>
       <LoadingScreen isLoading={isLoading} />
+
       <div>
         <main className="relative">
           <div className="flex flex-col-reverse gap-4 p-5 md:flex-row md:p-15 lg:p-30 xl:px-45 justify-between items-center">

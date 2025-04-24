@@ -18,6 +18,7 @@ const Navbar = () => {
           <Link
             to="/"
             className="cursor-pointer uppercase w-30 text-center hover:border-b-2"
+            state={{ hideLoading: true }}
           >
             Home
           </Link>

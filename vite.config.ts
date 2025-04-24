@@ -13,13 +13,4 @@ export default defineConfig(({ mode }) => ({
     // Ensure styled-components is pre-bundled for client-side
     include: ["styled-components"],
   },
-  build: {
-    rollupOptions: {
-      output: {
-        manualChunks: {
-          "react-vendor": ["react", "react-dom"],
-        },
-      },
-    },
-  },
 }));
