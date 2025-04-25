@@ -70,68 +70,6 @@ body {
   align-content: center;
 }
 
-.list-hover {
-  & {
-    & > div:first-child text {
-      position: relative;
-      &::after {
-        position: absolute;
-        scale: 1;
-        left: 100px;
-        top: -20px;
-        opacity: 0;
-        font-weight: bold;
-        color: rgba(0, 0, 0, 0.2);
-        content: attr(data-text);
-      }
-    }
-  }
-  &:hover {
-    .image-box {
-      visibility: visible;
-      opacity: 1;
-      animation: image-in 0.3s ease-in;
-    }
-    & > div:first-child text {
-      position: relative;
-      &::after {
-        animation: aaa 0.3s ease;
-        position: absolute;
-        scale: 5;
-        left: 100px;
-        top: -20px;
-        opacity: 1;
-        font-weight: bold;
-        color: rgba(0, 0, 0, 0.2);
-        content: attr(data-text);
-      }
-    }
-  }
-  &:not(:hover) {
-    & > div:first-child text {
-      position: relative;
-      &::after {
-        animation: fadeSlideDown 0.3s ease-in-out forwards;
-        position: absolute;
-        scale: 5;
-        left: 100px;
-        top: -20px;
-        opacity: 1;
-        font-weight: bold;
-        color: rgba(0, 0, 0, 0.2);
-        content: attr(data-text);
-      }
-    }
-  }
-}
-
-.image-box {
-  visibility: hidden;
-  opacity: 1;
-  transform: perspective(100px) rotateY(-2deg);
-  transform-origin: right;
-}
-
 .loadingScreen {
   position: absolute;
   text-wrap: nowrap;

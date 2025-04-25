@@ -1,0 +1,56 @@
+.list-hover {
+  perspective: 1000px;
+}
+
+.image-box {
+  visibility: hidden;
+  opacity: 0;
+  scale: 1;
+  width: 800px;
+  aspect-ratio: 1.5/1;
+  transform: rotateY(-100deg);
+  transform-origin: right;
+  right: 0;
+  transform-style: preserve-3d;
+  transition: transform 600ms linear(0, 0.8, 1), visibility 100ms linear,
+    opacity 100ms linear, filter 300ms linear;
+}
+
+.text-box {
+  gap: 3rem;
+  font-size: 120%;
+  transition: all 0.125s ease-in-out;
+}
+.shadow-text {
+  position: relative;
+}
+.shadow-text::after {
+  content: attr(data-text);
+  position: absolute;
+  left: 130px;
+  top: 30px;
+  scale: 5;
+  opacity: 0;
+  z-index: 2000;
+  color: black;
+  visibility: hidden;
+  transition: visibility 125ms linear, opacity 125ms linear, top 125ms linear;
+}
+
+.list-hover:hover {
+  .text-box {
+    gap: 1rem;
+    font-size: 200%;
+    font-weight: 500;
+  }
+  .shadow-text::after {
+    opacity: 0.1;
+    top: 0px;
+    visibility: visible;
+  }
+  .image-box {
+    visibility: visible;
+    opacity: 1;
+    transform: rotateY(-20deg);
+  }
+}

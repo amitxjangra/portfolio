@@ -6,10 +6,10 @@ import LoadingScreen from "~/components/LoadingScreen";
 import { ButtonCircle } from "./components/ButtonCircle";
 import eComm from "/eComm.png";
 import { useMobile } from "~/context/MobileContext";
-
+import "../styles/welcomePage.css";
 const projectData = [
   { title: "eCommerce", image: eComm, path: "/eCommerce" },
-  { title: "project" },
+  { title: "Chat App" },
   { title: "project" },
   { title: "project" },
 ];
@@ -149,14 +149,14 @@ export function Welcome() {
               } else
                 return (
                   <li className="relative list-hover flex h-80 py-30 pl-30 pr-20 transition-all hover:bg-[#ffffff] hover:py-20 flex flex-row justify-between items-center">
-                    <div className="flex items-center gap-5">
-                      <text
+                    <div className="flex text-box items-center">
+                      <p
                         className="shadow-text text-3xl font-bold"
                         data-text={(idx + 1).toString().padStart(2, "0")}
                       >
                         {(idx + 1).toString().padStart(2, "0")}
-                      </text>
-                      {i.title}
+                      </p>
+                      <p>{i.title}</p>
                     </div>
                     <div onClick={() => i.path && navigate(i.path)}>
                       <ButtonCircle
@@ -170,7 +170,7 @@ export function Welcome() {
                       />
                     </div>
                     <div
-                      className="absolute right-0 border px-100 py-70 image-box grayscale transition duration-300 hover:grayscale-0 z-3"
+                      className="absolute border image-box grayscale hover:grayscale-0 z-3"
                       style={{
                         background: `url(${
                           i.image
@@ -186,6 +186,11 @@ export function Welcome() {
                 );
             })}
           </ul>
+        </div>
+        <div className="flex items-center p-5 mt-20 md:p-15 lg:p-25">
+          <p className="text-with-line text-5xl lg:text-6xl font-bold mt-20">
+            Lets Connect {isMobile ? <br /> : <></>}
+          </p>
         </div>
       </div>
     </>

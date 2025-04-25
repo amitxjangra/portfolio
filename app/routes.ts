@@ -13,4 +13,5 @@ export default [
     route("contact", "routes/contact.tsx"),
     route("eCommerce", "routes/eCommerce.tsx"),
   ]),
+  route("works", "routes/works.tsx"),
 ] satisfies RouteConfig;
